@@ -13,7 +13,7 @@ app.use('/' , (req , res) => {
 
 const io = new Server(server, {
   cors: {
-    origin: "https://web-socket-front-end.vercel.app",
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true
   },
