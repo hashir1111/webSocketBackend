@@ -7,13 +7,13 @@ app.use(cors());
 
 const server = http.createServer(app);
 
-app.use('/' , (req , res) => {
-  res.send("hello world")
-})
+app.use("/", (req, res) => {
+  res.send("hello world");
+});
 
-const io = new Server(server, {
+const io = require("socket.io")(httpServer, {
   cors: {
-    origin: "*",
+    origin: "https://web-socket-front-end.vercel.app",
     methods: ["GET", "POST"],
   },
 });
@@ -27,7 +27,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send_message", (data) => {
-  
     socket.to(data.room).emit("receive_message", data);
   });
 
