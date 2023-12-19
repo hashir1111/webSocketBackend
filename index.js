@@ -7,6 +7,10 @@ app.use(cors());
 
 const server = http.createServer(app);
 
+app.use('/' , (req , res) => {
+  res.send("hello world")
+})
+
 const io = new Server(server, {
   cors: {
     origin: "https://web-socket-front-end.vercel.app",
