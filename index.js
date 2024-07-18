@@ -11,9 +11,9 @@ app.use("/", (req, res) => {
   res.send("hello world");
 });
 
-const io = require("socket.io")(httpServer, {
+const io = require("socket.io")(server, {
   cors: {
-    origin: "https://web-socket-front-end.vercel.app",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -28,6 +28,7 @@ io.on("connection", (socket) => {
 
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data);
+    console.log("CONSOLED DATA",data)
   });
 
   socket.on("disconnect", () => {
