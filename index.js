@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const http = require("http");
@@ -13,7 +14,7 @@ app.use("/", (req, res) => {
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URI,
     methods: ["GET", "POST"],
   },
 });
